@@ -1,12 +1,30 @@
-const login =(req,res)=>{
+const Admin = require('../model/adminModel')
+
+const login =async(req,res)=>{
     try {
-        console.log(req.body,'incoming login');
+        const { email, password } = req.body;
+
+        console.log(req.body, 'Incoming data');
+
+        // Check if admin already exists
+        const AdminEmail = await Admin.findOne({ email });
+        console.log(AdminEmail, 'Admin already exists');
+        
+        if (!AdminEmail) {
+            return res.status(400).json({ success: false, message: "Enter Currect email id" });
+        }else if(password!==AdminEmail.password){
+            return res.status(400).json({ success: false, message: "Incorrect password" });
+        }
+        console.log('login successful');
+        
+        res.status(200).json({success:true,message:"Login Success"})
         
     } catch (error) {
-        console.log(error.message);
-        
+        console.error("Error during login:", error.message);
+        res.status(500).json({ success: false, message: "Server error" });
     }
-}
+};
+
 module.exports={
     login
 }
