@@ -5,6 +5,7 @@ const newCareer = async (req, res) => {
   try {
     const {
       title,
+      shortTitle,
       description,
       qualifications,
       skills,
@@ -15,6 +16,7 @@ const newCareer = async (req, res) => {
       category,
       jobType,
       location,
+      link
     } = req.body;
     const file = req.file;
     console.log("file", req.file);
@@ -22,6 +24,9 @@ const newCareer = async (req, res) => {
     // Validate required fields
     if (!title || typeof title !== "string" || title.trim().length === 0) {
       return res.status(400).json({ error: "Invalid or missing title." });
+    }
+    if (!shortTitle || typeof shortTitle !== "string" || shortTitle.trim().length === 0) {
+      return res.status(400).json({ error: "Invalid or missing shortTitle." });
     }
     if (
       !description ||
@@ -80,6 +85,9 @@ const newCareer = async (req, res) => {
     ) {
       return res.status(400).json({ error: "Invalid or missing location." });
     }
+    if (!link || typeof link !== "string" || link.trim().length === 0) {
+      return res.status(400).json({ error: "Invalid or missing link." });
+    }
 
     // Validate skills
     let parsedSkills;
@@ -135,6 +143,7 @@ const newCareer = async (req, res) => {
 
     const newCareer = new Career({
       title,
+      shortTitle,
       description,
       qualifications,
       skills: parsedSkills,
@@ -145,6 +154,7 @@ const newCareer = async (req, res) => {
       category,
       jobType,
       location,
+      link,
       image: { url, filename },
     });
 
@@ -207,6 +217,7 @@ const updateCareer = async (req, res) => {
     const { id } = req.params;
     const {
       title,
+      shortTitle,
       description,
       qualifications,
       skills,
@@ -217,6 +228,7 @@ const updateCareer = async (req, res) => {
       category,
       jobType,
       location,
+      link
     } = req.body;
 
     const file = req.file;
@@ -224,6 +236,9 @@ const updateCareer = async (req, res) => {
     // Validate required fields
     if (!title || typeof title !== "string" || title.trim().length === 0) {
       return res.status(400).json({ error: "Invalid or missing title." });
+    }
+    if (!shortTitle || typeof shortTitle !== "string" || shortTitle.trim().length === 0) {
+      return res.status(400).json({ error: "Invalid or missing shortTitle." });
     }
     if (
       !description ||
@@ -282,6 +297,13 @@ const updateCareer = async (req, res) => {
     ) {
       return res.status(400).json({ error: "Invalid or missing location." });
     }
+    if (
+      !link ||
+      typeof link !== "string" ||
+      link.trim().length === 0
+    ) {
+      return res.status(400).json({ error: "Invalid or missing link." });
+    }
 
     // Parse skills if needed
     let parsedSkills;
@@ -317,6 +339,7 @@ const updateCareer = async (req, res) => {
     // Prepare updated data
     const updatedData = {
       title,
+      shortTitle,
       description,
       qualifications,
       skills: parsedSkills,
@@ -327,6 +350,7 @@ const updateCareer = async (req, res) => {
       category,
       jobType,
       location,
+      link
     };
 
     if (file) {
