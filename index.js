@@ -7,7 +7,7 @@ const {dbConnect} = require("./config/config.js");
 const userRoute=require('./routes/routes.js') ;
 const app = express();
 const cors = require('cors');
-const port = 3000; // You can choose any available port
+// const port = 3000; // You can choose any available port
 
 app.use(cors()); // Enable CORS for all routes
 
