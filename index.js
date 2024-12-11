@@ -14,7 +14,7 @@ app.use(cors()); // Enable CORS for all routes
 
 dbConnect()
 
-app.use(cors({ origin: 'http://adminpanel.rajavrukshagroup.in/' }));
+app.use(cors({ origin: 'http://adminpanel.rajavrukshagroup.in' }));
 app.use(express.json());
 app.use(express.static('public')); 
 app.use('/',userRoute)

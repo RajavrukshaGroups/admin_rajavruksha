@@ -11,5 +11,12 @@
       "src": "/(.*)",
       "dest": "/index.js"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://admin-rajavruksha.vercel.app/$1",
+      "permanent": true
+    }
   ]
 }
