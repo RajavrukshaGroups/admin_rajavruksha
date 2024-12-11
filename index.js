@@ -13,7 +13,7 @@ app.use(cors()); // Enable CORS for all routes
 
 dbConnect()
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: 'https://adminpanel.rajavrukshagroup.in' }));
 app.use(express.json());
 app.use(express.static('public')); 
 app.use('/',userRoute)
