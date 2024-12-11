@@ -15,7 +15,8 @@ const port = 3000; // You can choose any available port
 dbConnect()
 
 app.use(cors({
-  origin: 'https://adminpanel.rajavrukshagroup.in', // Allow specific origin
+  origin: 'https://adminpanel.rajavrukshagroup.in',
+   // Allow specific origin
   credentials: true // Include cookies or authorization headers if needed
 }));
 
